@@ -38,7 +38,7 @@ namespace TimeTracker
         private WorkTimeNote currentWorkTime;
         private LogService _logService;
 
-        private bool isUserActiveInOs;
+        private bool isUserActiveInOs = true;
 
         public MainWindow()
         {
