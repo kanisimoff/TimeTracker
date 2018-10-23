@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TimeTracker"
-        mc:Ignorable="d" Icon="Resources/clock.ico"
+        mc:Ignorable="d" Icon="clock_icon.ico"
         Title="Time tracker v.0.1" Height="Auto"  Width="Auto" MaxHeight="150" MaxWidth="300" Loaded="MainWindow_OnLoaded" 
         Closing="MainWindow_OnClosing" IsVisibleChanged="MainWindow_OnIsVisibleChanged" StateChanged="MainWindow_OnStateChanged">
     <Grid>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -14,45 +15,21 @@ namespace TimeTracker.Logic
     /// </summary>
     public class LogService
     {
-        private string oldFileName = "workTimeLog.json";
         private string fileName = "timeLog.json";
+        private string pathOldFileName;
+        private string pathFileName;
 
         private WorkTimeLog logWorkTime; 
 
         public LogService()
         {
-            if (File.Exists(oldFileName))
-                TransformLogFile();
+            var directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                Assembly.GetExecutingAssembly().GetName().Name);
+            if (!Directory.Exists(directory))
+                Directory.CreateDirectory(directory);
+
+            pathFileName = Path.Combine(directory, fileName);
             logWorkTime = LoadLog();
-        }
-
-        /// <summary>
-        /// Load working time log previous version
-        /// </summary>
-        /// <returns>Work Time Log (previous version)</returns>
-        [Obsolete]
-        private Dictionary<string, WorkTimeNote> LoadOldLog()
-        {
-            return File.Exists(oldFileName)
-                ? JsonConvert.DeserializeObject<Dictionary<string, WorkTimeNote>>(File.ReadAllText(oldFileName))
-                : new Dictionary<string, WorkTimeNote>();
-        }
-
-        /// <summary>
-        /// Transformation of the journal of the previous version into a new one
-        /// </summary>
-        private void TransformLogFile()
-        {
-            var oldLogNotes = LoadOldLog();
-            if (!oldLogNotes.Any()) return;
-            var newLog = new WorkTimeLog();
-            foreach (var workTimeNote in oldLogNotes)
-            {
-                var day = DateTime.Parse(workTimeNote.Key);
-                newLog.LogNotes.Add(day, workTimeNote.Value);
-            }
-            SaveLog(newLog);
-            File.Delete(oldFileName);
         }
 
         /// <summary>
@@ -61,8 +38,8 @@ namespace TimeTracker.Logic
         /// <returns>Work Time Log</returns>
         public WorkTimeLog LoadLog()
         {
-            logWorkTime = File.Exists(fileName)
-                ? JsonConvert.DeserializeObject<WorkTimeLog>(File.ReadAllText(fileName))
+            logWorkTime = File.Exists(pathFileName)
+                ? JsonConvert.DeserializeObject<WorkTimeLog>(File.ReadAllText(pathFileName))
                 : new WorkTimeLog();
             return logWorkTime;
         }
@@ -72,7 +49,7 @@ namespace TimeTracker.Logic
         /// </summary>
         public void SaveLog(WorkTimeLog logWorkTimes)
         {
-            File.WriteAllText(fileName, JsonConvert.SerializeObject(logWorkTimes));
+            File.WriteAllText(pathFileName, JsonConvert.SerializeObject(logWorkTimes));
         }
 
         /// <summary>
@@ -86,7 +63,7 @@ namespace TimeTracker.Logic
                 var date = DateTime.Now.Date;
                 return logWorkTime.LogNotes.ContainsKey(date)
                     ? logWorkTime.LogNotes[date]
-                    : new WorkTimeNote {BeginDateTime = DateTime.Now};
+                    : new WorkTimeNote {BeginDateTime = DateTime.Now, EndDateTime = DateTime.Now.AddSeconds(1)};
             }
         }
 
