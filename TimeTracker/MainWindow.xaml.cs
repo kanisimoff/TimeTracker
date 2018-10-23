@@ -143,15 +143,15 @@ namespace TimeTracker
                 .ToString("HH:mm:ss", CultureInfo.CurrentUICulture);
 
             durationWorkTime.Content = currentWorkTime.Duration.HoursFormat();
-            leftDayLabel.Content = currentWorkTime.CalculateDayWorkTime < TimeSpan.Zero ? "Переработал:" : "Отработал:";
+            leftDayLabel.Content = currentWorkTime.CalculateDayWorkTime < TimeSpan.Zero ? "Переработал:" : "Осталось:";
             leftWorkTime.Content = currentWorkTime.CalculateDayWorkTime.HoursFormat();
 
             durationWeekWorkTime.Content = _logService.Log.DurationCurrentWeek.HoursFormat();
-            leftWeekLabel.Content = _logService.Log.LeftCurrentWeek < TimeSpan.Zero ? "Переработал:" : "Отработал:";
+            leftWeekLabel.Content = _logService.Log.LeftCurrentWeek < TimeSpan.Zero ? "Переработал:" : "Осталось:";
             leftWeekWorkTime.Content = _logService.Log.LeftCurrentWeek.HoursFormat();
 
             durationMonthWorkTime.Content =  _logService.Log.DurationCurrentMonth.HoursFormat();
-            leftMonthLabel.Content = _logService.Log.LeftCurrentMonth < TimeSpan.Zero ? "Переработал:" : "Отработал:";
+            leftMonthLabel.Content = _logService.Log.LeftCurrentMonth < TimeSpan.Zero ? "Переработал:" : "Осталось:";
             leftMonthWorkTime.Content = _logService.Log.LeftCurrentMonth.HoursFormat();
 
 
