@@ -42,7 +42,8 @@ namespace TimeTracker.Logic.Models
             get
             {
                 var startDateWeek = DateTime.Now.StartOfWeek(DayOfWeek.Monday);
-                var businessHoursCount = startDateWeek.BusinessHours(DateTime.Now.Date, holidayList.Holidays.ToArray(), holidayList.ShortDays.ToArray());
+                var endDateWeek = startDateWeek.AddDays(6);
+                var businessHoursCount = startDateWeek.BusinessHours(endDateWeek, holidayList.Holidays.ToArray(), holidayList.ShortDays.ToArray());
 
                 return new TimeSpan(0, businessHoursCount, 0, 0) - DurationCurrentWeek;
             }
