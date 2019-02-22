@@ -99,8 +99,9 @@ namespace TimeTracker.Logic
 
             if (shortDateTimes != null)
             {
-                result -= (SettingsDuration.WorkDayDurationHours - SettingsDuration.ShortDayDurationHours) * shortDateTimes.Where(d => d >= firstDay && d <= lastDay)
-                    .Count(day => day.DayOfWeek == DayOfWeek.Sunday || day.DayOfWeek == DayOfWeek.Saturday);
+                var shortDays = shortDateTimes.Where(d => d >= firstDay && d <= lastDay).ToList();
+                var intDays = shortDays.Count();
+                result -= (SettingsDuration.WorkDayDurationHours - SettingsDuration.ShortDayDurationHours) * intDays;
                     
             }
             return result;
