@@ -288,15 +288,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TimeTracker"
-        "ProductCode" = "8:{FAA1FA4B-D096-44F8-8E89-BED1D60866F0}"
-        "PackageCode" = "8:{E0B05734-EC1E-4C09-8E25-2AD88BF382A8}"
+        "ProductCode" = "8:{24C71B10-D9B3-4C06-9D19-6B8A30F20BB8}"
+        "PackageCode" = "8:{A6921A79-7B24-4FE0-ACAE-60FC357F3379}"
         "UpgradeCode" = "8:{4CC7542A-372D-4345-B2F4-4F7907129FBD}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.1"
+        "ProductVersion" = "8:1.0.2"
         "Manufacturer" = "8:Konstantin Anisimoff"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -902,7 +902,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_AEBA890E876C4005BA0018CD14AEC39D"
             {
-            "SourcePath" = "8:..\\TimeTracker\\obj\\Debug\\TimeTracker.exe"
+            "SourcePath" = "8:..\\TimeTracker\\obj\\Release\\TimeTracker.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_9C68CB255EAA44DD9A63A61407A5AAE1"
